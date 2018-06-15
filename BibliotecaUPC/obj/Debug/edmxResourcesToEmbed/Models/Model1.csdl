@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BibliotecaUPCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="apellidos" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="fechaNacimiento" Type="DateTime" Precision="3" />
+    <Property Name="dni" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="BibliotecaUPCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Usuarios" EntityType="BibliotecaUPCModel.Usuario" />
+    <EntitySet Name="Ejemplares" EntityType="BibliotecaUPCModel.Ejemplar" />
+    <EntitySet Name="Libros" EntityType="BibliotecaUPCModel.Libro" />
+    <AssociationSet Name="FK_Ejemplares_Libros" Association="BibliotecaUPCModel.FK_Ejemplares_Libros">
+      <End Role="Libros" EntitySet="Libros" />
+      <End Role="Ejemplares" EntitySet="Ejemplares" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Ejemplar">
+    <Key>
+      <PropertyRef Name="idLibro" />
+      <PropertyRef Name="anyoPublicacion" />
+    </Key>
+    <Property Name="idLibro" Type="Int32" Nullable="false" />
+    <Property Name="edicion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="anyoPublicacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Libros" Relationship="BibliotecaUPCModel.FK_Ejemplares_Libros" FromRole="Ejemplares" ToRole="Libros" />
+  </EntityType>
+  <EntityType Name="Libro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="autor" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="titulo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="editorial" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ISBN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ejemplares" Relationship="BibliotecaUPCModel.FK_Ejemplares_Libros" FromRole="Libros" ToRole="Ejemplares" />
+  </EntityType>
+  <Association Name="FK_Ejemplares_Libros">
+    <End Type="BibliotecaUPCModel.Libro" Role="Libros" Multiplicity="1" />
+    <End Type="BibliotecaUPCModel.Ejemplar" Role="Ejemplares" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libros">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ejemplares">
+        <PropertyRef Name="idLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

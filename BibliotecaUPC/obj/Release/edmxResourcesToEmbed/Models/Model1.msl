@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BibliotecaUPCModelStoreContainer" CdmEntityContainer="BibliotecaUPCEntities">
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="BibliotecaUPCModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ejemplares">
+      <EntityTypeMapping TypeName="BibliotecaUPCModel.Ejemplar">
+        <MappingFragment StoreEntitySet="Ejemplares">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="anyoPublicacion" ColumnName="anyoPublicacion" />
+          <ScalarProperty Name="edicion" ColumnName="edicion" />
+          <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Libros">
+      <EntityTypeMapping TypeName="BibliotecaUPCModel.Libro">
+        <MappingFragment StoreEntitySet="Libros">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="editorial" ColumnName="editorial" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="autor" ColumnName="autor" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

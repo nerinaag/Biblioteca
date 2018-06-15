@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnalyseParams>
+   <Executable>C:\Program Files (x86)\NUnit.org\nunit-console\nunit3-console.exe</Executable>
+    <WorkingDir>.</WorkingDir>
+    <Arguments>BibliotecaUPC.Tests\bin\Debug\BibliotecaUPC.Tests.dll</Arguments>
+    <Output>dotCover.html</Output>
+    <ReportType>html</ReportType>
+	 <Filters>
+        <ExcludeFilters>
+			 <FilterEntry><ClassMask>*.Scripts*</ClassMask></FilterEntry>
+			 <FilterEntry><ModuleMask>*.Scripts*</ModuleMask></FilterEntry>
+			  <FilterEntry><ModuleMask>*.Tests*</ModuleMask></FilterEntry>
+        </ExcludeFilters>
+    </Filters>
+ </AnalyseParams>
+ 

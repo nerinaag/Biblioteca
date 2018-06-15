@@ -1,0 +1,122 @@
+﻿@model IEnumerable<BibliotecaUPC.Models.Libro>
+
+@{
+    ViewBag.Title = "Libros";
+}
+
+<style>
+    .modal-backdrop {
+        background-color: none !important;
+        opacity: 0.5;
+    }
+</style>
+<br />
+<h2>Libros</h2>
+
+<p>
+    @Html.ActionLink("Crear libro", "Create")
+</p>
+@if (TempData["error"] != null && TempData["error"].ToString() != String.Empty)
+{
+    <div class="alert alert-dismissible alert-danger">@TempData["error"]</div>
+}
+@if (TempData["okMessage"] != null && TempData["okMessage"].ToString() != String.Empty)
+{
+    <div class="alert alert-dismissible alert-success">@TempData["okMessage"].ToString()</div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.autor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.editorial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.editorial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                <a href="javascript:void(0);" class="anchorDetail" data-id="@item.ISBN">Ver</a> |
+                @Html.ActionLink("Borrar", "Delete", new { dni = item.ISBN }, new { onclick = "return confirm('¿Seguro que quiere borrar el libro?');", @class = "glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="modal" id='myModal'>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle del libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id='myModalContent'>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        var TeamDetailPostBackURL = '/Libros/Details';
+        $(function () {
+            $(".anchorDetail").click(function () {
+                var $buttonClicked = $(this);
+                var dni = $buttonClicked.attr('data-id');
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "isbn": isbn },
+                    datatype: "json",
+                    success: function (data) {
+                        $('#myModalContent').html(data);
+                        // $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+
+    </script>
+}

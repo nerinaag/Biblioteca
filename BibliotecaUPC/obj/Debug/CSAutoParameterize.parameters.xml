@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Model1-Web.config Connection String" description="Model1 Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="data source=(LocalDb)\MSSQLLocalDB;initial catalog=BibliotecaUPC.Models.Model1;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\Biblioteca\\BibliotecaUPC\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Model1']/@connectionString" />
+  </parameter>
+  <parameter name="BibliotecaUPCEntities-Web.config Connection String" description="BibliotecaUPCEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=WIN-4DPT0MRBMQL\SQLEXPRESS;initial catalog=BibliotecaUPC;persist security info=True;User id=sa;Password=10844728;Max Pool Size=100;Pooling=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\Biblioteca\\BibliotecaUPC\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BibliotecaUPCEntities']/@connectionString" />
+  </parameter>
+</parameters>
